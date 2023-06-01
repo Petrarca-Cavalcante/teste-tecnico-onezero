@@ -1,7 +1,9 @@
-import listUsers from "./userController"
+import listUsers from "./listUserController"
+import createUserRouter from "./createUserController"
+
 
 const routes = {
-    create: {},
+    create: createUserRouter,
     update: {},
     list: listUsers,
     delete: {}

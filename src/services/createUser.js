@@ -27,8 +27,9 @@ const createUserService = (body) => {
       newUser[field] = body[field];
     }
   }
-  const verifyUserExists = findUser(newUser["name"], "block");
-  if (verifyUserExists) {
+
+  const verifyUserExists = findUser(newUser["nome"], "block");
+  if (verifyUserExists != null) {
     return verifyUserExists;
   }
 
@@ -47,6 +48,7 @@ const createUserService = (body) => {
   users.push(newUser);
   response["statusCode"] = 201;
   response["message"] = newUser;
+
   return response;
 };
 

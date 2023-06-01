@@ -2,7 +2,7 @@ import users from "../data-source";
 
 const findUser = (userToFind, mode) => {
   let response = {};
-  const userFound = users.find((user) => user.name === userToFind);
+  const userFound = users.find((user) => user.nome === userToFind);
   if (mode === "block" && userFound) {
     response["statusCode"] = 400;
     response["message"] = "This name has already been used";

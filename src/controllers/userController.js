@@ -1,4 +1,4 @@
-const Router = require("koa-router");
+import Router from "koa-router";
 
 const listUsersRouter = new Router()
 
@@ -8,4 +8,5 @@ listUsersRouter.get("/users", async (ctx) => {
 });
 
 
-module.exports = listUsersRouter
+
+export default listUsersRouter

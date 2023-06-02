@@ -1,5 +1,6 @@
 import users from "../data-source";
 import findUser from "../utils/findUser";
+import { v4 as uuid } from "uuid";
 
 const createUserService = (body) => {
   if (typeof body != "object") {
@@ -28,7 +29,7 @@ const createUserService = (body) => {
     }
   }
 
-  const verifyUserExists = findUser(newUser["nome"], "block");
+  const verifyUserExists = findUser(newUser["email"], "block");
   if (verifyUserExists != null) {
     return verifyUserExists;
   }
@@ -45,6 +46,7 @@ const createUserService = (body) => {
     return response;
   }
 
+  newUser["id"] = uuid();
   users.push(newUser);
   response["statusCode"] = 201;
   response["message"] = newUser;

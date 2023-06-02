@@ -2,10 +2,10 @@ import users from "../data-source";
 
 const findUser = (userToFind, mode) => {
   let response = {};
-  const userFound = users.find((user) => user.nome === userToFind);
+  const userFound = users.find((user) => user.email === userToFind);
   if (mode === "block" && userFound) {
     response["statusCode"] = 400;
-    response["message"] = "This name has already been used";
+    response["message"] = "This email has already been used";
     return response;
   } else if (mode === "find" && !userFound) {
     response["statusCode"] = 404;

@@ -10,8 +10,6 @@ const updateValidator = (data, userToModify) => {
     idade: "number",
   };
 
-
-
   for (let key in userToModify) {
     if (!(key in data)) {
       data[key] = userToModify[key];
@@ -29,7 +27,7 @@ const updateValidator = (data, userToModify) => {
       changes[field] = data[field];
     }
   }
-  changes["id"] = userToModify["id"]
+  changes["id"] = userToModify["id"];
   return { changes, response };
 };
 

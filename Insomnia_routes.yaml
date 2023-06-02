@@ -1,0 +1,190 @@
+_type: export
+__export_format: 4
+__export_date: 2023-06-02T20:59:32.886Z
+__export_source: insomnia.desktop.app:v2023.2.2
+resources:
+  - _id: req_92f6e3d2a800414fb19a0557f0873045
+    parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
+    modified: 1685634222136
+    created: 1685633435840
+    url: localhost:3000/
+    name: Teste
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1685633435840
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_3ad8acd732484e1ca5667297ea21aa8b
+    parentId: null
+    modified: 1685633432914
+    created: 1685633432914
+    name: OZmap
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_0d9fde1cec64499f89d4212b627586e6
+    parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
+    modified: 1685724286527
+    created: 1685644671830
+    url: localhost:3000/user
+    name: CREATE USER
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1685483723954.3984
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a3eaf3522b444a849589a5c534abf8a7
+    parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
+    modified: 1685738024651
+    created: 1685672551763
+    url: localhost:3000/user/{{ _.created_user_id }}
+    name: UPDATE USER
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"nome": "André",
+        	"idade": 18,
+        	"email": "andre@zitos.com"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1685408868011.5977
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_9a2cacc5ea974618b44327ac8f600995
+    parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
+    modified: 1685721100121
+    created: 1685633488644
+    url: localhost:3000/users
+    name: GET USERS
+    description: ""
+    method: GET
+    body: {}
+    parameters:
+      - id: pair_9852a90788af465bbc2ed2459530f226
+        name: page
+        value: "1"
+        description: ""
+        disabled: false
+    headers: []
+    authentication: {}
+    metaSortKey: -1685334012068.7969
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a581de7a5c4d4eafad2208eef45d5edf
+    parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
+    modified: 1685675884578
+    created: 1685673566367
+    url: localhost:3000/user/{{ _.created_user_id }}
+    name: DELETE USER
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1685334012018.7969
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_fd7f28d09ed04ed2891eb1d125effaf2
+    parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
+    modified: 1685709859375
+    created: 1685709856751
+    url: localhost:3000/user/{{ _.created_user_id }}
+    name: RETRIEVE USER
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1685184300158.1953
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_63a15297d3baba1d745d99f3dc96f90907f5c050
+    parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
+    modified: 1685717011792
+    created: 1685633432921
+    name: Base Environment
+    data:
+      created_user_id: "{% response 'body', 'req_0d9fde1cec64499f89d4212b627586e6',
+        'b64::JC5pZA==::46b', 'never', 60 %}"
+    dataPropertyOrder:
+      "&":
+        - created_user_id
+    color: null
+    isPrivate: false
+    metaSortKey: 1685633432921
+    _type: environment
+  - _id: jar_63a15297d3baba1d745d99f3dc96f90907f5c050
+    parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
+    modified: 1685633432925
+    created: 1685633432925
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_d6a852747ddf424e8d00ec43fb7b717e
+    parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
+    modified: 1685633432915
+    created: 1685633432915
+    fileName: OZmap
+    contents: ""
+    contentType: yaml
+    _type: api_spec

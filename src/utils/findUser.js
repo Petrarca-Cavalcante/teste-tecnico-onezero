@@ -5,7 +5,7 @@ const findUser = (userToFind, mode, findFor = "email") => {
   const userFound = users.find((user) => user[findFor] === userToFind);
   if (mode === "block" && userFound) {
     response["statusCode"] = 400;
-    response["message"] = "This email has already been used";
+    response["message"] = {message: "This email has already been used"};
     return response;
   } else if (mode === "find" && !userFound) {
     response["statusCode"] = 404;

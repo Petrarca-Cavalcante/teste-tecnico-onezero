@@ -20,7 +20,7 @@ const updateValidator = (data, userToModify) => {
     if (typeof data[field] != requiredFields[field] || !data[field]) {
       errors[
         `Invalid_${field}`
-      ] = `${field} is required to be a ${requiredFields[field]} `;
+      ] = `${field} is required to be a ${requiredFields[field]}`;
       response["statusCode"] = 400;
       response["message"] = errors;
     } else {

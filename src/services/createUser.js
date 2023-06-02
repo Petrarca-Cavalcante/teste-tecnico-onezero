@@ -3,13 +3,15 @@ import findUser from "../utils/findUser";
 import { v4 as uuid } from "uuid";
 
 const createUserService = (body) => {
-  if (typeof body != "object") {
-    return { InvalidBody: "invalid body format" };
-  }
-
   let errors = {};
   let newUser = {};
   let response = {};
+
+  if (typeof body != "object" || !body) {
+    response["statusCode"] = 400;
+    response["message"] = { message: "invalid body format" };
+    return response;
+  }
 
   const requiredFields = {
     nome: "string",
@@ -21,7 +23,7 @@ const createUserService = (body) => {
     if (typeof body[field] != requiredFields[field] || !body[field]) {
       errors[
         `Invalid_${field}`
-      ] = `${field} is required to be a ${requiredFields[field]} `;
+      ] = `${field} is required to be a ${requiredFields[field]}`;
       response["statusCode"] = 400;
       response["message"] = errors;
     } else {
@@ -36,13 +38,13 @@ const createUserService = (body) => {
 
   if (Object.keys(errors).length > 0) {
     response["statusCode"] = 400;
-    response["message"] = errors;
+    response["message"] = {message: errors};
     return response;
   }
 
   if (newUser["idade"] < 18) {
     response["statusCode"] = 400;
-    response["message"] = "User must at least be 18 years old";
+    response["message"] = { message: "User must at least be 18 years old" };
     return response;
   }
 

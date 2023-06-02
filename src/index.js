@@ -32,8 +32,8 @@ koa
 
 const server = koa.listen(PORT);
 
-server.on("listening", () => {
-  console.log(`Seu servidor esta rodando em http://localhost:${PORT}`);
-});
+// server.on("listening", () => {
+//   console.log(`Seu servidor esta rodando em http://localhost:${PORT}`);
+// });
 
 export { router, server };

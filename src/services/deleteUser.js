@@ -2,7 +2,7 @@ import users from "../data-source";
 
 const deleteUserService = (userId) => {
   let response = {};
-  const userIndex = users.findIndex((user) => userId === userId);
+  const userIndex = users.findIndex((user) => user.id === userId);
   if(userIndex === -1){
     response["statusCode"] = 404
     response["message"] = "User not found"

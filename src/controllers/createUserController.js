@@ -1,12 +1,12 @@
-import Router from 'koa-router';
-import createUserService from '../services/createUser';
+import Router from "koa-router";
+import createUserService from "../services/createUser";
 
-const createUserRouter = new Router()
+const createUserRouter = new Router();
 
 createUserRouter.post("/user", (ctx) => {
-    const serializer = createUserService(ctx.request.body)
-    ctx.status = serializer.statusCode;
-    ctx.body = {"message": serializer.message};
-})
+  const serializer = createUserService(ctx.request.body);
+  ctx.status = serializer.statusCode;
+  ctx.body = serializer.message;
+});
 
-export default createUserRouter
+export default createUserRouter;

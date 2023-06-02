@@ -21,14 +21,13 @@ router.get("/", async (ctx) => {
 });
 
 koa
-.use(koaBody())
-.use(router.routes())
-.use(router.allowedMethods())
-.use(routes.list.routes())
-.use(routes.create.routes())
-.use(routes.update.routes());
-// .use(routes.delete.routes());
-
+  .use(koaBody())
+  .use(router.routes())
+  .use(routes.list.routes())
+  .use(routes.create.routes())
+  .use(routes.update.routes())
+  .use(routes.delete.routes())
+  .use(router.allowedMethods());
 
 const server = koa.listen(PORT);
 

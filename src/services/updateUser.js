@@ -1,12 +1,12 @@
 import users from "../data-source";
 import validator from "../utils/dataValidator";
 
-const updateUser = (data, id) => {
+const updateUserService = (data, id) => {
   let response = {};
   const userToModify = users.find((user) => user.id === id);
   if (!userToModify) {
     response["statusCode"] = 404;
-    response["message"] = "User not found";
+    response["message"] = {message: "User not found"};
     return response;
   }
   const validatedData = validator(data, userToModify);
@@ -15,12 +15,12 @@ const updateUser = (data, id) => {
     return validatedData.response;
   }
 
-  const index = users.findIndex((user) => user.id === id);
+  const userIndex = users.findIndex((user) => user.id === id);
 
-  users.splice(index, 1, validatedData.changes);
+  users.splice(userIndex, 1, validatedData.changes);
   response["statusCode"] = 202
   response["message"] = validatedData.changes
   return response;
 };
 
-export default updateUser;
+export default updateUserService;

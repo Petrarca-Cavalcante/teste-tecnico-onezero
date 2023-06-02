@@ -1,11 +1,11 @@
 _type: export
 __export_format: 4
-__export_date: 2023-06-02T20:59:32.886Z
+__export_date: 2023-06-02T21:26:20.402Z
 __export_source: insomnia.desktop.app:v2023.2.2
 resources:
   - _id: req_92f6e3d2a800414fb19a0557f0873045
     parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
-    modified: 1685634222136
+    modified: 1685740881045
     created: 1685633435840
     url: localhost:3000/
     name: Teste
@@ -15,7 +15,7 @@ resources:
     parameters: []
     headers: []
     authentication: {}
-    metaSortKey: -1685633435840
+    metaSortKey: -1685713944167
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -33,8 +33,8 @@ resources:
     scope: collection
     _type: workspace
   - _id: req_0d9fde1cec64499f89d4212b627586e6
-    parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
-    modified: 1685724286527
+    parentId: fld_bd621b0d138546e6b3bc23e856eaebb0
+    modified: 1685741015442
     created: 1685644671830
     url: localhost:3000/user
     name: CREATE USER
@@ -44,14 +44,16 @@ resources:
       mimeType: application/json
       text: |-
         {
-
+        	"nome": "André",
+        	"idade": 18,
+        	"email": "andre@zitos.com"
         }
     parameters: []
     headers:
       - name: Content-Type
         value: application/json
     authentication: {}
-    metaSortKey: -1685483723954.3984
+    metaSortKey: -1685734071248.75
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -60,9 +62,19 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_a3eaf3522b444a849589a5c534abf8a7
+  - _id: fld_bd621b0d138546e6b3bc23e856eaebb0
     parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
-    modified: 1685738024651
+    modified: 1685740883520
+    created: 1685740780276
+    name: Success
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1685700526112.5
+    _type: request_group
+  - _id: req_a3eaf3522b444a849589a5c534abf8a7
+    parentId: fld_bd621b0d138546e6b3bc23e856eaebb0
+    modified: 1685740874734
     created: 1685672551763
     url: localhost:3000/user/{{ _.created_user_id }}
     name: UPDATE USER
@@ -81,7 +93,7 @@ resources:
       - name: Content-Type
         value: application/json
     authentication: {}
-    metaSortKey: -1685408868011.5977
+    metaSortKey: -1685734071198.75
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -91,8 +103,8 @@ resources:
     settingFollowRedirects: global
     _type: request
   - _id: req_9a2cacc5ea974618b44327ac8f600995
-    parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
-    modified: 1685721100121
+    parentId: fld_bd621b0d138546e6b3bc23e856eaebb0
+    modified: 1685740896724
     created: 1685633488644
     url: localhost:3000/users
     name: GET USERS
@@ -107,7 +119,7 @@ resources:
         disabled: false
     headers: []
     authentication: {}
-    metaSortKey: -1685334012068.7969
+    metaSortKey: -1685734071148.75
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -117,8 +129,8 @@ resources:
     settingFollowRedirects: global
     _type: request
   - _id: req_a581de7a5c4d4eafad2208eef45d5edf
-    parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
-    modified: 1685675884578
+    parentId: fld_bd621b0d138546e6b3bc23e856eaebb0
+    modified: 1685741068563
     created: 1685673566367
     url: localhost:3000/user/{{ _.created_user_id }}
     name: DELETE USER
@@ -128,7 +140,7 @@ resources:
     parameters: []
     headers: []
     authentication: {}
-    metaSortKey: -1685334012018.7969
+    metaSortKey: -1685734071098.75
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -138,8 +150,8 @@ resources:
     settingFollowRedirects: global
     _type: request
   - _id: req_fd7f28d09ed04ed2891eb1d125effaf2
-    parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
-    modified: 1685709859375
+    parentId: fld_bd621b0d138546e6b3bc23e856eaebb0
+    modified: 1685741096062
     created: 1685709856751
     url: localhost:3000/user/{{ _.created_user_id }}
     name: RETRIEVE USER
@@ -149,7 +161,148 @@ resources:
     parameters: []
     headers: []
     authentication: {}
-    metaSortKey: -1685184300158.1953
+    metaSortKey: -1685734071048.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_bbf7b69b36304b21a6b706ae5ef838e5
+    parentId: fld_5d2376c048c54b9996c84d27d64110d0
+    modified: 1685740808465
+    created: 1685740709429
+    url: localhost:3000/user
+    name: "CREATE USER INVALID FIELDS "
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1685673690003.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_5d2376c048c54b9996c84d27d64110d0
+    parentId: wrk_3ad8acd732484e1ca5667297ea21aa8b
+    modified: 1685740792399
+    created: 1685740787983
+    name: Errors
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1685687108058
+    _type: request_group
+  - _id: req_15c57aa5e1754aec9cab051794428a9a
+    parentId: fld_5d2376c048c54b9996c84d27d64110d0
+    modified: 1685741010040
+    created: 1685740825543
+    url: localhost:3000/user/1
+    name: UPDATE USER INVALID ID
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"nome": "André",
+        	"idade": 18,
+        	"email": "andre@zitos.com"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1685673689953.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_66f2c2b818df4bb5a13b108691960adc
+    parentId: fld_5d2376c048c54b9996c84d27d64110d0
+    modified: 1685740872401
+    created: 1685740850744
+    url: localhost:3000/user/{{ _.created_user_id }}
+    name: UPDATE USER INVALID KEYS
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"nome": "André",
+        	"idade": 18,
+        	"email": "andre@zitos.com",
+        	"chave_extra": "deve ser ignorada"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1685673689903.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_15fd5a2af849437aae700f68fbd26ffa
+    parentId: fld_5d2376c048c54b9996c84d27d64110d0
+    modified: 1685741075120
+    created: 1685740908331
+    url: localhost:3000/user/{{ _.created_user_id }}1
+    name: DELETE USER INVALID ID
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1685673689853.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_281713b362914532a432e119065133fe
+    parentId: fld_5d2376c048c54b9996c84d27d64110d0
+    modified: 1685741097381
+    created: 1685741089237
+    url: localhost:3000/user/{{ _.created_user_id }}
+    name: RETRIEVE USER INVALID ID
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1685673689803.5
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true

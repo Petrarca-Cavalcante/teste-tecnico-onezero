@@ -8,7 +8,7 @@ listUsersRouter.get("/users", async (ctx) => {
   const {page} = ctx.query
   const response = listUsersService(page)
   ctx.status = 200;
-  ctx.body = { total: response.totalUsers, page: response.currentPage, pageCount: response.totalPages, rows: [response.users] };
+  ctx.body = { total: response.totalUsers, page: response.currentPage, pageCount: response.totalPages, rows: response.users };
 });
 
 

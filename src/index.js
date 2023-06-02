@@ -27,6 +27,7 @@ koa
   .use(routes.create.routes())
   .use(routes.update.routes())
   .use(routes.delete.routes())
+  .use(routes.retrieveUser.routes())
   .use(router.allowedMethods());
 
 const server = koa.listen(PORT);

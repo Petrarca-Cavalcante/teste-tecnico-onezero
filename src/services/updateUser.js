@@ -6,7 +6,7 @@ const updateUserService = (data, id) => {
 
   if (typeof data != "object") {
     response["statusCode"] = 400;
-    response["message"] = { message: "Type of body is invalid" };
+    response["message"] = { message: "invalid body format" };
     return response;
   }
   const userToModify = users.find((user) => user.id === id);

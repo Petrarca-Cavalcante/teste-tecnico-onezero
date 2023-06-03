@@ -46,14 +46,6 @@ const userSchema = {
 //A Api agora gera um id para cada usuário, logo, é necessário armazenar o id gerado para o Raupp para os outros testes
 let idDoRaupp = 0;
 
-//Inicio dos testes
-
-//este teste é simplesmente pra enteder a usar o mocha/chai
-describe("Um simples conjunto de testes", () => {
-  it("deveria retornar -1 quando o valor não esta presente", () => {
-    assert.equal([1, 2, 3].indexOf(4), -1);
-  });
-});
 
 //testes da aplicação
 describe("Testes da aplicaçao", () => {
@@ -82,13 +74,13 @@ describe("Testes da aplicaçao", () => {
 
   it("Cria o usuario raupp e outros 6 usuários", (done) => {
     const usuarios = [
-      { nome: "Andressa", email: "andressa@gmail.com", idade: 23 },
-      { nome: "Bianca", email: "bianca@gmail.com", idade: 21 },
+      { nome: "Junji Ito", email: "junjiito@gmail.com", idade: 59 },
+      { nome: "Scott Pilgrim", email: "scottpilgrim@hotmail.com", idade: 23 },
       { nome: "Carlos", email: "carlos@gmail.com", idade: 22 },
       { nome: "Davi", email: "davi@gmail.com", idade: 22 },
       { nome: "Lee", email: "lee@gmail.com", idade: 19 },
-      { nome: "Lucas", email: "lucas@gmail.com", idade: 28 },
-      { nome: "raupp", email: "jose.raupp@devoz.com.br", idade: 35 },
+      { nome: "Guts", email: "guts@griffith.com", idade: 24 },
+      { nome: "Raupp", email: "jose.raupp@devoz.com.br", idade: 35 },
     ];
     for (let usuario of usuarios) {
       chai
@@ -104,13 +96,47 @@ describe("Testes da aplicaçao", () => {
             email: usuario["email"],
             idade: usuario["idade"],
           });
-          if (res.body.nome === "raupp") {
+          if (res.body.nome === "Raupp") {
             idDoRaupp = res.body.id;
           }
-
         });
     }
     done();
+  });
+
+  it("Impede criação de usuário sem envio de body", (done) => {
+    chai
+      .request(app)
+      .post("/user")
+      .send()
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(400);
+        expect(res.body.message).to.be.equal("invalid body format");
+        done();
+      });
+  });
+
+  it("Impede criação de usuário com email já existente", (done) => {
+    const repeatedEmailUser = {
+      nome: "Billy Butcher",
+      email: "jose.raupp@devoz.com.br",
+      idade: 34,
+      chaveExtra: "deve ser ignorada",
+    };
+
+    chai
+      .request(app)
+      .post(`/user`)
+      .send(repeatedEmailUser)
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(400);
+        expect(res.body.message).to.be.equal(
+          "This email has already been used"
+        );
+        done();
+      });
   });
 
   it("Impede criação de usuário com menos de 18 anos", (done) => {
@@ -168,20 +194,7 @@ describe("Testes da aplicaçao", () => {
     done();
   });
 
-  // Agora os usuários são manipulados por um id gerado por uuid, portanto, para não encontrar um usuário basta escrever qualquer coisa que não seja um uuid válido
-  it("Retorna error 404 para usuario nao existe não existe no sistema", (done) => {
-    chai
-      .request(app)
-      .get("/user/naoExiste")
-      .end((err, res) => {
-        expect(err).to.be.null;
-        expect(res).to.have.status(404);
-        expect(res.body.message).to.equal("User not found");
-        done();
-      });
-  });
-
-  it("O usuario raupp existe e é valido", (done) => {
+  it("Retorna usuário por ID (Raupp)", (done) => {
     chai
       .request(app)
       .get(`/user/${idDoRaupp}`)
@@ -193,7 +206,20 @@ describe("Testes da aplicaçao", () => {
       });
   });
 
-  it("Atualiza o usuario raupp", (done) => {
+  // Agora os usuários são manipulados por um id gerado por uuid, portanto, para não encontrar um usuário basta escrever qualquer coisa que não seja um uuid válido
+  it("Retorna error 404 para usuario que nao existe no sistema", (done) => {
+    chai
+      .request(app)
+      .get("/user/68bedf32-99fd-444c-808e-570242378df8")
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(404);
+        expect(res.body.message).to.equal("User not found");
+        done();
+      });
+  });
+
+  it("Atualiza o usuario por ID (Raupp)", (done) => {
     const raupChanges = {
       nome: "Raupp",
       email: "jose.raupp@devoz.com",
@@ -218,7 +244,41 @@ describe("Testes da aplicaçao", () => {
       });
   });
 
-  it("Error 404 ao tentar atualizar usuário inexistente", (done) => {
+  it("Impede atualização de usuário sem envio de body", (done) => {
+    chai
+      .request(app)
+      .patch(`/user/${idDoRaupp}`)
+      .send()
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(400);
+        expect(res.body.message).to.be.equal("invalid body format");
+        done();
+      });
+  });
+
+  it("Impede usuário de atualizar prórpio email para outro que já seja usado", (done) => {
+    // email anterior era jose.raupp@devoz.com
+    const raupChanges = {
+      nome: "Raupp",
+      email: "lee@gmail.com",
+      idade: 34,
+      chaveExtra: "deve ser ignorada",
+    };
+
+    chai
+      .request(app)
+      .patch(`/user/${idDoRaupp}`)
+      .send(raupChanges)
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(400);
+        expect(res.body.message).to.equal("This email has already been used");
+        done();
+      });
+  });
+
+  it("Retorna error 404 ao tentar atualizar usuário inexistente", (done) => {
     const raupChanges = {
       nome: "Raupp",
       email: "jose.raupp@devoz.com",
@@ -237,7 +297,7 @@ describe("Testes da aplicaçao", () => {
       });
   });
 
-  it("Exclui o usuario raupp", (done) => {
+  it("Deleta usuário por ID (Raupp)", (done) => {
     chai
       .request(app)
       .delete(`/user/${idDoRaupp}`)
@@ -249,7 +309,7 @@ describe("Testes da aplicaçao", () => {
       });
   });
 
-  it("Usuario raupp não existe mais no sistema", (done) => {
+  it("Retorna error 404 ao tentar deletar usuário que não existe (Raupp)", (done) => {
     chai
       .request(app)
       .get(`/user/${idDoRaupp}`)

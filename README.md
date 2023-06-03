@@ -1,9 +1,8 @@
-# OZmap Teste técnico
-
-## 1. Visão Geral
-
-    Visão geral do projeto, um pouco das tecnologias usadas.
-
+# Apresentação        		
+---
+#### O projeto API desenvolvida em Node.js com Koa.js tem como objetivo gerenciar usuários, oferecendo operações completas de criação, leitura, atualização e exclusão. O Koa js é um framework minimalista e eficiente para o desenvolvimento de aplicações web. Com essa tecnologia, a API possui uma arquitetura modular e baseada em middlewares, o que facilita a organização e a flexibilidade do código.  Através dessa API, é possível gerenciar os usuários de forma simples e automatizada.
+---
+### 1 Tecnologias usadas:
 - NodeJs
 - KoaJs
 - Mocha

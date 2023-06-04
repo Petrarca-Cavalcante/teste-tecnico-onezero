@@ -28,6 +28,23 @@ cp .env.example .env
 ```
 Configure suas variáveis de ambiente( por enquanto apenas há a configuração de PORT)
 
+### 2.3 Rodando Aplicalção ou Testes
+
+Para iniciar a aplicação use comando:
+
+````
+npm run dev
+
+````
+
+Para rodar os testes use o comando: 
+
+````
+npm test
+
+````
+
+
 ## 3. Endpoints
 
 ### Índice
